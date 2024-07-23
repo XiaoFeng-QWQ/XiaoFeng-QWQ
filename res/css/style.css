@@ -1,5 +1,19 @@
+@font-face {
+    font-family: ChillRoundF;
+    src: url("https://gcore.jsdelivr.net/gh/145hub/145hub.github.io@master/ChillRoundFRegular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: ChillRoundF;
+    src: url("https://gcore.jsdelivr.net/gh/145hub/145hub.github.io@master/ChillRoundFBold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
 * {
-    font-family: 'Miss Font', 'PingFang SC', 'Source Han Serif', 'Noto Sans SC', 'Open Sans', 'MiSans', sans-serif !important;
+    font-family: ChillRoundF, Verdana, Arial, sans-serif !important;
     color: #fff;
     text-shadow: 0 .1875rem .3125rem #1c1f21;
 }
