@@ -68,7 +68,7 @@ function showPageHtml() {
     }
     if (configArray.currentUrl.endsWith(configArray.pageUrl[2])) {
         $.ajax({
-            url: 'https://xiaofeng.now.cc/api/posts',
+            url: 'https://blog.zicheng.icu/api/posts',
             dataType: 'JSON',
             success: function (data) {
                 $(configArray.pageElement[2]).html('');
