@@ -102,7 +102,7 @@ function showPageHtml() {
 
                 // 查看更多文章按钮，直接放在最外层的 HTML 结构外面
                 const moreHtml = `
-                    <button class="mdui-btn mdui-center mdui-ripple mdui-btn-raised" onclick="window.open('https://xiaofeng.now.cc/', '_blank')">查看更多文章</button>
+                    <button class="mdui-btn mdui-center mdui-ripple mdui-btn-raised" onclick="window.open('https://blog.zicheng.icu', '_blank')">查看更多文章</button>
                 `;
                 $(configArray.pageElement[2]).append(moreHtml);
             },
