@@ -25,7 +25,10 @@ article {
 }
 
 #page-2 .item {
-    padding-bottom: 8px;
+    padding: 8px;
+    height: 300px;
+    /* 根据内容调整 */
+    overflow: hidden;
 }
 
 #page-3 button {
