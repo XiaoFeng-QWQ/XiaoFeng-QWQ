@@ -14,6 +14,11 @@ Get-ChildItem -Directory | ForEach-Object {
 
 $outputJson = $output | ConvertTo-Json
 $outputPath = "..\res\projects.json"
-$outputJson | Out-File -FilePath $outputPath
+
+# 使用 System.Text.UTF8Encoding 创建带 BOM 的 UTF8 编码
+$utf8BomEncoding = New-Object System.Text.UTF8Encoding $true
+
+# 将输出内容写入文件
+[System.IO.File]::WriteAllText($outputPath, $outputJson, $utf8BomEncoding)
 
 Write-Host "输出已保存到: $outputPath"
