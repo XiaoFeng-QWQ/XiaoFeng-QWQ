@@ -4,3 +4,6 @@
 [submodule "projects/Picture-crash"]
 	path = projects/Picture-crash
 	url = https://github.com/XiaoFeng-QWQ/Picture-crash
+[submodule "projects/voice-synthesis"]
+	path = projects/voice-synthesis
+	url = https://github.com/XiaoFeng-QWQ/voice-synthesis
