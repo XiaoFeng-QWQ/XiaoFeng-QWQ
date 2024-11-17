@@ -40,7 +40,7 @@ main {
     align-items: center;
     text-align: center;
     background: rgb(245 245 220);
-    background: url(cool-background.png) center;
+    /*background: url(cool-background.png) center; ""*/
     background-size: cover;
 }
 
