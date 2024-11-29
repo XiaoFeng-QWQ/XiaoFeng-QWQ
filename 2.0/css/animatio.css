@@ -9,6 +9,7 @@
 }
 
 @keyframes bounce {
+
     0%,
     20%,
     50%,
@@ -33,5 +34,16 @@
 
     to {
         opacity: 1;
+    }
+}
+
+/* 打字动画 */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
     }
 }

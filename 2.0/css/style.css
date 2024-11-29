@@ -1,14 +1,8 @@
 @font-face {
     font-family: ChillRoundF;
-    src: url("https://gcore.jsdelivr.net/gh/145hub/145hub.github.io@master/ChillRoundFRegular.ttf") format("truetype");
+    src: url("../fonts/ChillRoundFRegular.woff") format("truetype"),
+        url("../fonts/ChillRoundFBold.woff") format("truetype");
     font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: ChillRoundF;
-    src: url("https://gcore.jsdelivr.net/gh/145hub/145hub.github.io@master/ChillRoundFBold.ttf") format("truetype");
-    font-weight: bold;
     font-style: normal;
 }
 
@@ -22,7 +16,19 @@ html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    scroll-behavior: smooth;
     background-color: #fffbf0;
+}
+
+/* 打字坤 */
+.typing {
+    display: inline-block;
+    /* 改为 inline-block，避免占满整个行 */
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: typing 4s steps(30) 1s forwards, blink-caret 0.75s step-end infinite;
+    position: relative;
 }
 
 main {
@@ -40,46 +46,35 @@ main {
     align-items: center;
     text-align: center;
     background: rgb(245 245 220);
-    background: url(cool-background.png) center;
     background-size: cover;
+}
+
+#top-banner svg {
+    position: absolute;
+    top: 0;
 }
 
 #top-banner h1 {
     font-size: 4em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     margin: 0;
-    animation: fadeIn 2s ease-in-out, bounce 2s infinite;
 }
 
-#top-banner p {
+#top-banner span {
     font-size: 1.5em;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-#top-banner a {
     position: absolute;
-    top: 500;
+    margin-top: 200px;
 }
 
 .inner-header {
-    height: 65vh;
+    height: 90vh;
     width: 100%;
     margin: 0;
     padding: 0;
 }
 
-.waves {
-    position: relative;
-    width: 100%;
-    height: 15vh;
-    margin-bottom: -7px;
-    /*Fix for safari gap*/
-    min-height: 100px;
-    max-height: 150px;
-}
-
 .flex {
-    /*Flexbox for containers*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,7 +84,6 @@ main {
 .content {
     max-width: 1200px;
     margin: 20px auto;
-    margin-top: 20px;
     padding: 20px;
     background: #ffffff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -119,19 +113,40 @@ main {
     color: #666;
 }
 
-.main-btn {
-    display: inline-block;
-    font-size: 1.2em;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s, transform 0.3s;
+#friend-links ul{
+    list-style-type: none !important;
 }
 
+/* 按钮 */
+.main-btn {
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #FFD700;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    background-size: 200%;
+    transition: all 0.4s ease-in-out;
+}
 .main-btn:hover {
-    transform: scale(1.1);
+    background-position: 100% 0;
+    color: #000;
+    border-color: #FFD700;
+}
+.main-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #6e7dff, #FFD700);
+    transition: all 0.4s ease;
+    border-radius: 5px;
+    z-index: -1;
 }
 
 footer {
@@ -176,33 +191,4 @@ footer p {
     #about {
         width: 100%;
     }
-}
-
-/* 顶部波浪效果 */
-.parallax>use {
-    animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-}
-
-.parallax>use:nth-child(1) {
-    animation-delay: -2s;
-    animation-duration: 7s;
-    fill: rgba(245, 245, 220, 0.3);
-}
-
-.parallax>use:nth-child(2) {
-    animation-delay: -3s;
-    animation-duration: 10s;
-    fill: rgba(245, 245, 220, 0.4);
-}
-
-.parallax>use:nth-child(3) {
-    animation-delay: -4s;
-    animation-duration: 13s;
-    fill: rgba(245, 245, 220, 0.6);
-}
-
-.parallax>use:nth-child(4) {
-    animation-delay: -5s;
-    animation-duration: 20s;
-    fill: rgba(245, 245, 220, 0.9);
 }
