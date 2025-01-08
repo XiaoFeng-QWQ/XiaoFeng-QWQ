@@ -1,74 +1,214 @@
-<!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>小枫_QWQの主页</title>
-    <script src="/res/js/jquery3.7.1.min.js"></script>
-    <link href="https://cdn.bootcdn.net/ajax/libs/mdui/1.0.2/css/mdui.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/res/css/style.css">
-    <link rel="stylesheet" href="/res/css/rest.css">
-    <link rel="stylesheet" href="/res/css/pgae.css">
-    <link rel="stylesheet" href="/res/css/keyframes.css">
-    <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcdn.net/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
-    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/nprogress/0.2.0/nprogress.min.js"></script>
-    <script>
-        // 监听页面加载事件
-        window.addEventListener('load', () => {
-            NProgress.done();
-            mdui.mutation();
-        });
-        // 监听资源加载事件
-        document.addEventListener('readystatechange', () => {
-            if (document.readyState === 'interactive') {
-                NProgress.start();
-                mdui.mutation();
-            } else if (document.readyState === 'complete') {
-                NProgress.done();
-                mdui.mutation();
-            }
-        });
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="小枫_QWQde个人主页，小枫_QWQ一个业余网页开发者，热爱前端和后端开发。">
+    <meta name="keywords" content="小枫_QWQ,小枫,小枫_QWQ的个人主页,小枫主页">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animatio.css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <title>小枫_QWQ个人主页2.0</title>
 </head>
 
 <body>
-    <div id="container">
-        <header id="header">加载中……</header>
-        <main class="mdui-container">
-            <section id="page-1" class="mdui-typo box-shadow animate__animated">
-                <article id="readme" class="box-shadow">
-                    <div class="mdui-progress">
-                        <div class="mdui-progress-indeterminate"></div>
-                    </div>
-                </article>
-                <hr>
-                <article class="box-shadow">
-                    <h2>访问人数统计:</h2>
-                    <img src="https://count.himiku.com/get/@xiaofenghome?theme=rule34" alt="站点统计"
-                        class="mdui-img-rounded">
-                    <h2>IPINFO</h2>
-                    <img src="https://api.zicheng.icu/api/IpImage" class="mdui-img-rounded" alt="IPINFO">
-                </article>
-            </section>
-        </main>
+    <!-- loading开始 -->
+    <style>
+        #loading-animation {
+            background-color: #fffbf0;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: 99999999999999999999999999999999999999999999999;
+            margin-top: 0px;
+            top: 0px;
+        }
+
+        #loading-animation-center {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        #loading-animation-center-absolute {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 200px;
+            width: 200px;
+            margin-top: -100px;
+            margin-left: -100px;
+        }
+
+        .loading_object {
+            -moz-border-radius: 50% 50% 50% 50%;
+            -webkit-border-radius: 50% 50% 50% 50%;
+            border-radius: 50% 50% 50% 50%;
+            position: absolute;
+            border-left: 5px solid #87CEFA;
+            border-right: 5px solid #FFC0CB;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            -webkit-animation: animate 2.5s infinite;
+            animation: animate 2.5s infinite;
+        }
+
+        #loading_one {
+            left: 75px;
+            top: 75px;
+            width: 50px;
+            height: 50px;
+        }
+
+        #loading_two {
+            left: 65px;
+            top: 65px;
+            width: 70px;
+            height: 70px;
+            -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s;
+        }
+
+        #loading_three {
+            left: 55px;
+            top: 55px;
+            width: 90px;
+            height: 90px;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+        #loading_four {
+            left: 45px;
+            top: 45px;
+            width: 110px;
+            height: 110px;
+            -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+        }
+
+        @-webkit-keyframes animate {
+            50% {
+                -ms-transform: rotate(180deg);
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+
+            100% {
+                -ms-transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes animate {
+            50% {
+                -ms-transform: rotate(180deg);
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+
+            100% {
+                -ms-transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+    <div id="loading-animation">
+        <div id="loading-animation-center">
+            <div id="loading-animation-center-absolute">
+                <div class="loading_object" id="loading_four"></div>
+                <div class="loading_object" id="loading_three"></div>
+                <div class="loading_object" id="loading_two"></div>
+                <div class="loading_object" id="loading_one"></div>
+            </div>
+        </div>
     </div>
-    <footer id="footer">加载中……</footer>
-    <div id="music-player-container"></div>
-    <script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
-    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/mdui/1.0.2/js/mdui.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/marked/9.0.0/marked.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-    <script src="/res/js/music-player.js"></script>
-    <script src="/res/js/main.js"></script>
-    <script src="/res/js/page.js"></script>
-    <script>
-        // 新建类
-        const musicPlayer = new MusicPlayerSettings();
-        // 调用主函数
-        musicPlayer.main();
-    </script>
+    <script>!function () { function e() { setTimeout(() => { $("#loading-animation").fadeOut(540) }, 500) } window.jQuery ? $(document).ready(() => { e() }) : document.onreadystatechange = (() => { "interactive" === document.readyState && e() }) }();</script>
+    <!-- loading 结束 -->
+
+    <header id="top-banner">
+        <svg xmlns="" viewBox="0 0 1440 320">
+            <path fill="#FFD700" fill-opacity="1"
+                d="M0,224L48,192C96,160,192,96,288,101.3C384,107,480,181,576,176C672,171,768,85,864,42.7C960,0,1056,0,1152,26.7C1248,53,1344,107,1392,133.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
+            </path>
+        </svg>
+        <div class="inner-header flex">
+            <h1><i class="fa-solid fa-house"></i> 欢迎来到小枫QWQの主页</h1>
+            <span id="hitokoto_text" class="typing"></span>
+        </div>
+    </header>
+
+    <main>
+        <div class="content" id="about">
+            <h2><i class="fas fa-user"></i> 关于我</h2>
+            <img class="mdui-img-circle" style="max-height: 12rem;"
+                src="https://q.qlogo.cn/headimg_dl?dst_uin=1432777209&amp;spec=640&amp;img_type=jpg">
+            <p>你好！我是[小枫_QWQ]，一个业余的开发者，热爱前端和后端开发。</p>
+            <p>熟悉<i class="fab fa-html5"></i> HTML, <i class="fab fa-css3-alt"></i> CSS, <i
+                    class="fab fa-js"></i>JavaScript，<i class="fab fa-php"></i> PHP</p>
+        </div>
+
+        <div class="content skills" id="skills">
+            <h2><i class="fas fa-cogs"></i> 我的技能</h2>
+            <h3>前端技术</h3>
+            <p><i class="fab fa-html5"></i> HTML, <i class="fab fa-css3-alt"></i> CSS, <i class="fab fa-js"></i>
+                JavaScript
+            </p>
+            <h3><i class="fas fa-server"></i> 后端技术</h3>
+            <p><i class="fab fa-php"></i> PHP</p>
+            <h3><i class="fas fa-database"></i> 数据库</h3>
+            <p>MySQL, Sqlite</p>
+        </div>
+
+        <div class="content contact" id="contact">
+            <h2><i class="fas fa-envelope"></i> 联系我</h2>
+            <p>如果你有兴趣合作或想了解更多信息，请通过以下方式联系我：</p>
+            <p><i class="fas fa-envelope"></i> 邮箱: [q1432777209@126.com] | <i class="fab fa-qq"></i> QQ: [1432777209]
+            </p>
+            <a href="mailto:q1432777209@126.com" class="main-btn"><i class="fas fa-paper-plane"></i> 发送邮件</a>
+        </div>
+
+        <div class="content social-media" id="social-media">
+            <h2><i class="fas fa-share-alt"></i> 社交媒体</h2>
+            <p>关注我：</p>
+            <a class="main-btn" target="_blank" href="https://www.weibo.com/u/7739034804"><i class="fab fa-weibo"></i>
+                微博</a>
+            <a class="main-btn" target="_blank" href="https://space.bilibili.com/497281351"><i
+                    class="fab fa-bilibili"></i> bilibili</a>
+        </div>
+
+        <div class="content friend-links" id="friend-links">
+            <h2><i class="fas fa-link"></i> 更多链接</h2>
+            <ul>
+                <li>
+                    <a class="main-btn" href="https://blog.zicheng.icu" target="_blank">
+                        <i class="fas fa-arrow-right"></i> 我的个人博客
+                    </a>
+                </li>
+                <li>
+                    <a class="main-btn" href="https://lab.zicheng.icu" target="_blank">
+                        <i class="fas fa-arrow-right"></i> 实验室
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#f5f5dc" fill-opacity="0.5"
+            d="M0,256L48,245.3C96,235,192,213,288,186.7C384,160,480,128,576,122.7C672,117,768,139,864,128C960,117,1056,75,1152,80C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+        </path>
+    </svg>
+
+    <footer>
+        <p><i class="fa-solid fa-copyright"></i> 2024 [小枫_QWQ]</p>
+        <p style="right: 0;position: absolute;">V2.2.1</p>
+    </footer>
+    <button onclick="window.open('/1.0/index.html')" class="main-btn" style="position: fixed; bottom: 10; left: 10;">点击访问1.0</button>
+    <script src="JavaScript/jquery.min.js"></script>
+    <script src="JavaScript/script.js"></script>
 </body>
 
 </html>

@@ -3,15 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width">
-    <title>小枫_QWQの主页 - 示例文件</title>
-    <script src="/res/js/jquery3.7.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>小枫_QWQの主页 - 我的项目</title>
+    <script src="/1.0/res/js/jquery3.7.1.min.js"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/mdui/1.0.2/css/mdui.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/res/css/style.css">
-    <link rel="stylesheet" href="/res/css/rest.css">
-    <link rel="stylesheet" href="/res/css/home.css">
-    <link rel="stylesheet" href="/res/css/keyframes.css">
+    <link rel="stylesheet" href="/1.0/res/css/style.css">
+    <link rel="stylesheet" href="/1.0/res/css/rest.css">
+    <link rel="stylesheet" href="/1.0/res/css/pgae.css">
+    <link rel="stylesheet" href="/1.0/res/css/keyframes.css">
     <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link href="https://cdn.bootcdn.net/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
     <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/nprogress/0.2.0/nprogress.min.js"></script>
@@ -31,36 +30,37 @@
                 mdui.mutation();
             }
         });
-
-        /**
-         * Github用户名用于API 
-         * 必须写在head部分
-         */
-        var githubName = `XiaoFeng-QWQ`
     </script>
 </head>
 
 <body>
     <div id="container">
         <header id="header">加载中……</header>
-        <main class="mdui-valign mdui-container">
-            <section id="page-数字" class="mdui-center box-shadow animate__animated">
-                <article id="页面名称" class="mdui-valign mdui-typo">
-                    <p>这里就是内容了</p>
-                    <div class="mdui-progress">
-                        <div class="mdui-progress-indeterminate"></div>
-                    </div>
+        <main class="mdui-container">
+            <section id="page-3" class="mdui-center box-shadow animate__animated">
+                <article id="projects" class="mdui-typo">
+                    <button class="mdui-btn mdui-btn-raised"
+                        onclick="iframe.contentWindow.history.back();">返回上一页</button>
+                    <iframe height="600vh" id="iframe" width="100%" src="/1.0/projects/index.html"></iframe>
                 </article>
             </section>
         </main>
-        <footer id="footer">加载中……</footer>
     </div>
+    <footer id="footer">加载中……</footer>
+    <div id="music-player-container"></div>
+    <script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
     <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/mdui/1.0.2/js/mdui.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/marked/9.0.0/marked.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-    <script src="/res/js/main.js"></script>
-    <script src="/res/js/home.js"></script>
-    <script src="/res/js/blog.js"></script>
+    <script src="/1.0/res/js/music-player.js"></script>
+    <script src="/1.0/res/js/main.js"></script>
+    <script src="/1.0/res/js/page.js"></script>
+    <script>
+        // 新建类
+        const musicPlayer = new MusicPlayerSettings();
+        // 调用主函数
+        musicPlayer.main();
+    </script>
 </body>
 
 </html>

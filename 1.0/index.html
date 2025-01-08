@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>小枫_QWQの主页 - 我的项目</title>
-    <script src="/res/js/jquery3.7.1.min.js"></script>
+    <title>小枫_QWQの主页</title>
+    <script src="/1.0/res/js/jquery3.7.1.min.js"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/mdui/1.0.2/css/mdui.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/res/css/style.css">
-    <link rel="stylesheet" href="/res/css/rest.css">
-    <link rel="stylesheet" href="/res/css/pgae.css">
-    <link rel="stylesheet" href="/res/css/keyframes.css">
+    <link rel="stylesheet" href="/1.0/res/css/style.css">
+    <link rel="stylesheet" href="/1.0/res/css/rest.css">
+    <link rel="stylesheet" href="/1.0/res/css/pgae.css">
+    <link rel="stylesheet" href="/1.0/res/css/keyframes.css">
     <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link href="https://cdn.bootcdn.net/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
     <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/nprogress/0.2.0/nprogress.min.js"></script>
@@ -37,11 +37,19 @@
     <div id="container">
         <header id="header">加载中……</header>
         <main class="mdui-container">
-            <section id="page-3" class="mdui-center box-shadow animate__animated">
-                <article id="projects" class="mdui-typo">
-                    <button class="mdui-btn mdui-btn-raised"
-                        onclick="iframe.contentWindow.history.back();">返回上一页</button>
-                    <iframe height="600vh" id="iframe" width="100%" src="/projects/index.html"></iframe>
+            <section id="page-1" class="mdui-typo box-shadow animate__animated">
+                <article id="readme" class="box-shadow">
+                    <div class="mdui-progress">
+                        <div class="mdui-progress-indeterminate"></div>
+                    </div>
+                </article>
+                <hr>
+                <article class="box-shadow">
+                    <h2>访问人数统计:</h2>
+                    <img src="https://count.himiku.com/get/@xiaofenghome?theme=rule34" alt="站点统计"
+                        class="mdui-img-rounded">
+                    <h2>IPINFO</h2>
+                    <img src="https://api.zicheng.icu/api/IpImage" class="mdui-img-rounded" alt="IPINFO">
                 </article>
             </section>
         </main>
@@ -52,9 +60,9 @@
     <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/mdui/1.0.2/js/mdui.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/marked/9.0.0/marked.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-    <script src="/res/js/music-player.js"></script>
-    <script src="/res/js/main.js"></script>
-    <script src="/res/js/page.js"></script>
+    <script src="/1.0/res/js/music-player.js"></script>
+    <script src="/1.0/res/js/main.js"></script>
+    <script src="/1.0/res/js/page.js"></script>
     <script>
         // 新建类
         const musicPlayer = new MusicPlayerSettings();

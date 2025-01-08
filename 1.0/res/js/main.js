@@ -1,6 +1,6 @@
 //加载组件
-$("#header").load('/res/module/header.html');
-$("#footer").load('/res/module/footer.html');
+$("#header").load('/1.0/res/module/header.html');
+$("#footer").load('/1.0/res/module/footer.html');
 
 /**----------------------
  *   ---- 全站Pjax ----

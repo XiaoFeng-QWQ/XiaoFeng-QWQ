@@ -4,16 +4,16 @@ $output = @()
 
 Get-ChildItem -Directory | ForEach-Object {
     $folderName = $_.Name
-    $folderPath = "/projects/$folderName/index.html"
+    $folderPath = "$folderName/index.html"
     $folderInfo = @{
         "name" = $folderName
-        "path" = $folderPath
+        "path" = "/1.0" + $folderPath
     }
     $output += $folderInfo
 }
 
 $outputJson = $output | ConvertTo-Json
-$outputPath = "..\res\projects.json"
+$outputPath = "projects.json"
 
 # 使用 System.Text.UTF8Encoding 创建带 BOM 的 UTF8 编码
 $utf8BomEncoding = New-Object System.Text.UTF8Encoding $true
