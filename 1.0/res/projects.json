@@ -1,0 +1,38 @@
+﻿[
+    {
+        "name":  "music-player",
+        "path":  "/1.0/projects/music-player/index.html"
+    },
+    {
+        "name":  "Picture-crash",
+        "path":  "/1.0/projects/Picture-crash/index.html"
+    },
+    {
+        "name":  "voice-synthesis",
+        "path":  "/1.0/projects/voice-synthesis/index.html"
+    },
+    {
+        "name":  "下载音乐歌单",
+        "path":  "/1.0/projects/下载音乐歌单/index.html"
+    },
+    {
+        "name":  "图像压缩",
+        "path":  "/1.0/projects/图像压缩/index.html"
+    },
+    {
+        "name":  "图片展示",
+        "path":  "/1.0/projects/图片展示/index.html"
+    },
+    {
+        "name":  "键盘",
+        "path":  "/1.0/projects/键盘/index.html"
+    },
+    {
+        "name":  "随机cos",
+        "path":  "/1.0/projects/随机cos/index.html"
+    },
+    {
+        "name": "JSON生成器",
+        "path": "/1.0/projects/JSON生成器/index.html"
+    }
+]

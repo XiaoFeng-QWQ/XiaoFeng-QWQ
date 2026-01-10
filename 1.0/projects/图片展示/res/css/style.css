@@ -1,0 +1,84 @@
+/* ==============================
+   通用样式重置
+   ============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+input,
+button,
+textarea,
+select {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ==============================
+   全局样式
+   ============================== */
+body {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #595959;
+    font-family: Arial, sans-serif;
+    /* 确保有个默认字体 */
+}
+
+/* ==============================
+   元素样式
+   ============================== */
+.controls {
+    position: fixed;
+    /* 使用 fixed 确保 .controls 和 .info 在全屏时可见 */
+    top: 20px;
+    left: 20px;
+    color: #fff;
+    font-size: 16px;
+    z-index: 1;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.controls button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: #fff;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.controls button:hover {
+    color: red;
+}
+
+.info {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    color: #fff;
+    z-index: 1;
+}

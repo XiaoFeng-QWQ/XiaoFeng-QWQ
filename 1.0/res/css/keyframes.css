@@ -1,0 +1,21 @@
+/* 旋转动画 */
+@keyframes turn {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes turn-back {
+    0% {
+        transform: rotate(360deg);
+        /* 从当前旋转角度开始反向旋转 */
+    }
+
+    100% {
+        transform: rotate(0deg);
+        /* 反向旋转到初始角度 */
+    }
+}

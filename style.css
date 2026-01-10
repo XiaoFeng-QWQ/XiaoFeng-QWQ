@@ -1,0 +1,389 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: #409eff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #66b1ff;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0e0e11;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.app {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.app-content {
+    display: flex;
+    flex: 1;
+}
+
+/* 竖屏警告样式 */
+.portrait-warning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0e0e11;
+    z-index: 1000;
+    display: none;
+    /* 默认隐藏 */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.portrait-warning.active {
+    display: flex;
+}
+
+.warning-content {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.05);
+    /* border-radius: 20px; */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideUp 0.5s ease;
+}
+
+.warning-icon {
+    font-size: 64px;
+    color: #6aa6ff;
+    margin-bottom: 30px;
+}
+
+.warning-content h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.warning-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin-bottom: 30px;
+}
+
+.warning-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.fullscreen-btn,
+.continue-btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.fullscreen-btn {
+    background: #6aa6ff;
+    color: #fff;
+}
+
+.fullscreen-btn:hover {
+    background: #5a96f0;
+    transform: translateY(-2px);
+}
+
+.continue-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.continue-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.warning-note {
+    font-size: 14px;
+    opacity: 0.6;
+    margin-top: 20px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .warning-content {
+        padding: 30px 20px;
+    }
+
+    .warning-actions {
+        flex-direction: column;
+    }
+
+    .fullscreen-btn,
+    .continue-btn {
+        width: 100%;
+    }
+}
+
+/* 动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 原有样式 */
+.left {
+    width: 45%;
+    padding: 72px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+    will-change: transform, opacity;
+}
+
+.left>* {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.right {
+    width: 55%;
+    position: relative;
+    overflow: hidden;
+    background: #0b0c10;
+}
+
+/* ===== Status ===== */
+.status {
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+    letter-spacing: .12em;
+    opacity: .5;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* ===== Content ===== */
+.hero-title {
+    font-size: 20px;
+}
+
+.hero-desc {
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: .85;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.section h2 {
+    font-size: 28px;
+}
+
+.projects li {
+    list-style: none;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    cursor: pointer;
+    opacity: .7;
+    transition: opacity .3s;
+}
+
+.projects li:hover {
+    opacity: 1;
+}
+
+
+/* ===== 联系方式样式 ===== */
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(106, 166, 255, 0.3);
+}
+
+.contact-icon {
+    font-size: 28px;
+    color: #6aa6ff;
+    align-items: center;
+}
+
+.contact-item h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.contact-item p {
+    font-size: 14px;
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .contact-item {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .contact-icon {
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+footer {
+    margin-top: auto;
+    font-size: 13px;
+    opacity: .4;
+}
+
+.visual {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    opacity: 0;
+    transition: opacity .4s;
+    pointer-events: none;
+}
+
+.avatar-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.avatar-img {
+    border-radius: 50%;
+    max-width: 5rem;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-image {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity .6s ease;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.project-image.active {
+    opacity: 1;
+}
+
+.back-hint {
+    margin-top: 32px;
+    font-size: 13px;
+    opacity: .45;
+    letter-spacing: .08em;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.back-hint:hover {
+    opacity: .7;
+}
+
+#heroCanvas {
+    transition: opacity .6s ease;
+}
+
+.hint {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    opacity: .4;
+}

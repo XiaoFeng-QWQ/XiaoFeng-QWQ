@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compression</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/mdui/1.0.2/css/mdui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="previewContainer" class="mdui-container mdui-card">
+        <div class="mdui-textfield">
+            <input type="file" class="mdui-textfield-input mb-3" id="fileInput" accept="image/*" style="display: none;">
+            <label class="mdui-textfield-label" for="fileInput">
+                Choose Image
+            </label>
+            <button class="mdui-btn mdui-btn-raised mdui-color-theme-accent" id="customFileBtn">
+                Select Image
+            </button>
+            <p id="fileName"></p>
+        </div>
+        <div>
+            <p class="mdui-text-center">Uncompressed:</p>
+            <canvas id="canvas" class="mdui-img-fluid"></canvas>
+        </div>
+        <div>
+            <p class="mdui-text-center">After Compression:</p>
+            <img id="compressedImage" style="display: none;" src="" alt="Compressed Image" class="mdui-img-fluid">
+        </div>
+        <div class="mdui-textfield">
+            <label class="mdui-textfield-label">Max Width</label>
+            <input class="mdui-textfield-input" type="number" name="maxWidth" value="500">
+        </div>
+        <div>
+            <label class="mdui-textfield-label">Max Height</label>
+            <input class="mdui-textfield-input" type="number" name="maxHeight" value="500">
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label mt-3 compressionLevel">
+            <p>Compression Level</p>
+            <label class="mdui-slider mdui-slider-discrete">
+                <input type="range" id="compressionLevel" name="compressionLevel" min="0.1" max="1" step="0.1"
+                    value="0">
+            </label>
+        </div>
+        <div class="btn">
+            <button id="downloadButton" class="mdui-btn mdui-btn-raised mdui-color-theme-accent" disabled>
+                <i class="mdui-icon material-icons">file_download</i> Download Compressed Image
+            </button>
+            <button id="clearButton" class="mdui-btn mdui-btn-raised">
+                <i class="mdui-icon material-icons">clear</i> Clear Image
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/mdui/1.0.2/js/mdui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // 初始化页面中所有未初始化的MDUI组件。
+        mdui.mutation();
+    </script>
+</body>
+
+</html>

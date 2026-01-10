@@ -1,0 +1,182 @@
+.keyboard__popup {
+    position: absolute;
+    background-color: #ddddd5;
+    border: 1px solid #ccc;
+    padding: 5px;
+    z-index: 1000;
+    color: #333;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 5px;
+}
+
+.keyboard__popup-close {
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    right: 2px;
+    opacity: .35;
+    vertical-align: middle;
+}
+
+.keyboard__popup-close:hover {
+    opacity: 1
+}
+
+.keyboard__popup-content {
+    display: inline-block;
+    padding: .9rem .5rem .4rem;
+    vertical-align: top;
+    width: 32rem
+}
+
+.keyboard__popup-row {
+    display: flex
+}
+
+.keyboard__key {
+    background: #fff;
+    background-origin: content-box;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border-radius: .1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    flex: 0 0 auto;
+    font-size: .9rem;
+    height: 1.9rem;
+    line-height: 1.8rem;
+    margin: 0 .1rem .2rem;
+    padding: .05rem 0;
+    text-align: center;
+    width: 1.9rem;
+    border-radius: 3px;
+}
+
+.keyboard__key_pressed_true,
+.keyboard__key_toggled_true {
+    padding-bottom: 0;
+    padding-top: .1rem
+}
+
+.keyboard__key_toggled_true {
+    background-color: #def4d1
+}
+
+.keyboard__key_marked_true {
+    background-color: #eee
+}
+
+.keyboard__key_disabled_true {
+    color: #e6e6e6;
+    cursor: default
+}
+
+.keyboard__key_special_alt,
+.keyboard__key_special_atmark,
+.keyboard__key_special_backspace,
+.keyboard__key_special_capslock,
+.keyboard__key_special_enter,
+.keyboard__key_special_lshift,
+.keyboard__key_special_rshift {
+    padding-left: .5rem;
+    padding-right: .5rem
+}
+
+.keyboard__key_special_backspace {
+    width: 4.5rem
+}
+
+.keyboard__key_special_atmark {
+    width: 2.4rem
+}
+
+.keyboard__key_special_capslock {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAOCAYAAAD0f5bSAAAAAXNSR0IArs4c6QAAAKNJREFUKFOtkVENgyEMhEFCLWABC1hACxbAAhawgAUsYAEJXW7JvwCFh2Uj4aW9j+tRrS7HWsutNX1qH4sAiEj13nGFRhQAOOdUSknHGLmUonbHBZqBZ6wQAtdaF/ADOefYGKNyzsJ9B98CAMhQSjlmhMZ7z2MMVWvVGgDsp3MC+ekj7yIgIrwmoL3+H+i27HmCa/AbjLoY72unXz5CmGGHc6YXDs5j2l1oWZ0AAAAASUVORK5CYII=");
+    font-size: .6rem;
+    width: 3.05rem
+}
+
+.keyboard__key_special_enter {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOBAMAAADtZjDiAAAAElBMVEV3d3eZmZmIiIgREREAAAD///+eqvF0AAAABnRSTlP//////wCzv6S/AAAAKElEQVQIW2MIhQAG7HQwJh0EpVUgdIALhBZxAQFnKD8UKh8KVQ83FwDt7x9DrqhxXQAAAABJRU5ErkJggg==");
+    font-size: .6rem;
+    width: 3.35rem
+}
+
+.keyboard__key_special_lshift {
+    width: 3.65rem
+}
+
+.keyboard__key_special_lshift,
+.keyboard__key_special_rshift {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAOCAAAAADRFMkOAAAAAnRSTlMA/1uRIrUAAABISURBVAjXpcwxEcAwDEPRTyEUSsEUTCEUSiEUyvp3sHvNHg3SvUW4h5rYdWX8iscVn2JpkYbeqZizD2dKQj0BiTq0+0gADPUFgtqP17aKMQkAAAAASUVORK5CYII=");
+    font-size: .6rem
+}
+
+.keyboard__key_special_rshift {
+    width: 4.85rem
+}
+
+.keyboard__key_special_space {
+    font-size: .6rem;
+    width: 20.4rem
+}
+
+.keyboard__key_special_alt {
+    font-size: .8rem;
+    width: 6.1rem
+}
+
+.keyboard__key_special_sch {
+    font-size: .7rem
+}
+
+.keyboard__key_special_atmark,
+.keyboard__key_special_capslock,
+.keyboard__key_special_lshift,
+.keyboard__key_special_rshift {
+    background-position: 0 50%
+}
+
+.keyboard__key_special_backspace,
+.keyboard__key_special_enter,
+.keyboard__key_special_rshift {
+    background-position: 100% 50%
+}
+
+.keyboard__key_special_atmark,
+.keyboard__key_special_capslock,
+.keyboard__key_special_lshift {
+    text-align: left
+}
+
+.keyboard__key_special_backspace,
+.keyboard__key_special_enter,
+.keyboard__key_special_rshift {
+    text-align: right
+}
+
+.keyboard__radio {
+    height: .05rem;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: .05rem
+}
+
+.keyboard__radio:checked+.keyboard__lang-tick {
+    visibility: visible
+}
+
+.keyboard__key-ins {
+    border-radius: .1rem;
+    font-size: .6rem;
+    height: 1.9rem;
+    margin: 0 .1rem .2rem;
+    position: relative;
+    width: 4.9rem
+}

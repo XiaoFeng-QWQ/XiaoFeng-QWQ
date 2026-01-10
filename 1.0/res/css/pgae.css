@@ -1,0 +1,42 @@
+/* 很好的动画使我头像旋转() */
+#page-1 .mdui-.mdui-img-circle-circle {
+    /* 设置初始状态 */
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+    /* 添加过渡效果，使旋转更平滑 */
+}
+
+#page-1 .mdui-img-circle:hover {
+    animation: turn 0.7s ease;
+}
+
+#page-1 .mdui-img-circle:not(:hover) {
+    animation: turn-back 0.7s ease forwards;
+    /* 鼠标离开时的反向旋转动画 */
+}
+
+iframe {
+    border: unset;
+}
+
+article {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#page-2 .item {
+    padding: 8px;
+    height: 300px;
+    /* 根据内容调整 */
+    overflow: hidden;
+}
+
+#page-3 button {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 1200px) {
+    #page-2 .item {
+        max-width: 90vw;
+    }
+}

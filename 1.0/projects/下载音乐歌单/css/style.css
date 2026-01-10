@@ -1,0 +1,60 @@
+* {
+    scroll-behavior: smooth;
+}
+
+
+.getPlayList {
+    margin: 10px;
+    display: flex;
+}
+
+#logOutput {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#logOutput p {
+    margin: 0 0 10px;
+    line-height: 1.5;
+}
+
+#logOutput .warning {
+    background-color: #ffb5b5;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+#logOutput .info {
+    background-color: #e6f7ff;
+    color: #1890ff;
+    font-weight: bold;
+}
+
+#playList thead tr th {
+    background-color: #ffffff;
+    position: sticky;
+    z-index: 10;
+    top: 0px;
+}
+
+#backToTop {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-size: 28px;
+    display: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#backToTop.show {
+    display: block;
+    opacity: 1;
+}

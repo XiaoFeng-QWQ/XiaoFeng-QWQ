@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片转换和崩坏</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>
+            图片转换和崩坏
+            <a href="https://github.com/XiaoFeng-QWQ/Picture-crash/" target="_blank" rel="noopener noreferrer">出处</a>
+        </h2>
+        <input type="file" id="fileInput" accept="image/*">
+        <button onclick="convertToBase64()">转换为Base64</button>
+        <div>
+            <label for="base64Result">Base64 数据：</label>
+            <textarea id="base64Result" placeholder="Base64 结果将会显示在这里..."></textarea>
+        </div>
+        <div id="corruptImageSettings">
+            <div>
+                <label for="numModifications">修改字符数量：</label>
+                <input type="number" value="1" name="numModifications" id="numModifications" placeholder="修改字符数量">
+            </div>
+            <div>
+                <label for="offset">随机偏移量最大值：</label>
+                <input type="number" value="5" name="offset" id="offset" placeholder="随机偏移量最大值">
+            </div>
+        </div>
+        <button onclick="corruptImage()">崩坏图片</button>
+        <div id="imageContainer"></div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下载歌单歌曲</title>
+    <link href="css/mdui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+</head>
+
+<body>
+    <div class="mdui-container mdui-typo">
+
+        <h1 class="mdui-text-color-red">注意，本项目处于测试阶段！<i class="mdui-icon material-icons">warning</i></h1>
+
+        <div class="mdui-textfield">
+            <input class="mdui-textfield-input" type="text" id="playListID" placeholder="歌单ID" required>
+        </div>
+
+        <div class="logOutput">
+            <p>实时日志：</p>
+            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-pink-accent" onclick="stopLogOutput()">
+                <i class="mdui-icon material-icons">stop</i>
+                暂停日志输出
+            </button>
+            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-red-accent" onclick="clearLogs()">
+                <i class="mdui-icon material-icons">clear</i>
+                清空日志
+            </button>
+            <span id="warningCount">0</span><i class="mdui-icon material-icons mdui-text-color-red-accent">warning</i>
+            <span id="infoCount">0</span><i class="mdui-icon material-icons mdui-text-color-indigo">info</i>
+            <div id="logOutput"></div>
+        </div>
+
+        <div class="mdui-progress" id="progress" style="display: none;">
+            <div class="mdui-progress-indeterminate"></div>
+        </div>
+
+        <div class="getPlayList mdui-center">
+            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo" id="getPlayList"
+                onclick="getPlayList()">
+                获取歌单列表
+            </button>
+            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo" onclick="main()">
+                打包下载！
+            </button>
+            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo" onclick="clearPlayList()">
+                <i class="mdui-icon material-icons">clear</i>
+                清空歌单列表
+            </button>
+            <p><i class="mdui-icon material-icons">library_music</i>歌单列表</p>
+            <div class="mdui-table-fluid">
+                <table id="playList" class="mdui-table mdui-table-hoverable mdui-table-selectable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>封面</th>
+                            <th>名称</th>
+                            <th>作者</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <button id="backToTop" class="mdui-btn mdui-btn-icon mdui-color-indigo"><i
+            class="mdui-icon material-icons">arrow_upward</i></button>
+    <script>
+        //一键返回顶部
+        var backToTop = document.getElementById("backToTop");
+        window.onscroll = function () {
+            if (document.documentElement.scrollTop >= 1000) {
+                backToTop.classList.add("show");
+            } else {
+                backToTop.classList.remove("show");
+            }
+        };
+        backToTop.onclick = function () {
+            document.documentElement.scrollTop = 0;
+        };
+    </script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="js/mdui.min.js"></script>
+    <script src="js/playList.js"></script>
+    <script src="js/files.js"></script>
+    <script src="js/log.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

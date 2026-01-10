@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.bootcdn.net/ajax/libs/mdui/1.0.2/css/mdui.min.css" rel="stylesheet">
+    <title>音乐播放器</title>
+</head>
+
+<body class="mdui-typo">
+    <h1 class="mdui-typo">音乐播放器示例站点 by <a target="_blank"
+            href="https://github.com/XiaoFeng-QWQ/music-player/">https://github.com/XiaoFeng-QWQ/music-player/</a></h1>
+
+    <button class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#music-player-settings'}">
+        打开音乐播放器设置
+    </button>
+
+    <div id="music-player-container"></div>
+
+    <script src="main.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mdui/1.0.2/js/mdui.min.js"></script>
+    <script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
+    <script>
+        // 新建类
+        const musicPlayer = new MusicPlayerSettings();
+        // 调用主函数
+        musicPlayer.main();
+    </script>
+</body>
+
+</html>

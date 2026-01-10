@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>基岩版原始JSON文本生成器</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css">
+    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+
+    <!--代码高亮-->
+    <link href="prism.css" rel="stylesheet" />
+    <script src="prism.js"></script>
+</head>
+
+<body>
+    <h1 class="center">基岩版原始JSON文本生成器</h1>
+
+    <div class="mdui-container">
+
+        <select id="type" title="选择器" onchange="showFields()" class="mdui-select center" mdui-select>
+            <option value="text">文本</option>
+            <option value="score">分数</option>
+            <option value="selector">选择器</option>
+            <option value="translate">转译字符</option>
+            <option value="wrap">换行</option>
+        </select>
+        <br>
+        <div id="fields" class="mdui-textfield center">请选择类型</div>
+        <button type="button" onclick="generateJSON()" class="mdui-btn mdui-btn-raised mdui-ripple">生成/增加</button>
+        <hr>
+        生成结果
+        <pre><code class="language-json" id="output"></code></pre>
+    </div>
+
+    <script>
+        function updateCode(code) {
+            document.getElementById('output').textContent = code;
+            Prism.highlightAll();
+        }
+    </script>
+    <script src="index.js"></script>
+</body>
+
+</html>

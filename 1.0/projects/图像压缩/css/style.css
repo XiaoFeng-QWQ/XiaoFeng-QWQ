@@ -1,0 +1,26 @@
+#previewContainer {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#compressedImage,
+#canvas {
+    padding-top: 40px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.btn button {
+    margin-top: 10px;
+}
+
+.compressionLevel {
+    padding: 40px;
+}
