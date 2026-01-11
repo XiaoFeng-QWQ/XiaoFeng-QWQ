@@ -69,7 +69,7 @@ a:hover {
 }
 
 .right {
-    width: 55%;
+    width: 55dvm;
     position: relative;
     overflow: hidden;
     background: #0b0c10;
@@ -265,15 +265,15 @@ footer {
     }
 
     .hero-title h1 {
-        font-size: 34px;
+        font-size: 32px; /* 缩小一点 */
     }
 
     .hero-desc {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .section h2 {
-        font-size: 24px;
+        font-size: 22px;
     }
 }
 
@@ -285,38 +285,7 @@ footer {
     }
 
     .hero-title h1 {
-        font-size: 28px;
-    }
-
-    .hero-desc {
-        font-size: 15px;
-    }
-
-    .section h2 {
-        font-size: 22px;
-    }
-
-    .projects li {
-        font-size: 14px;
-    }
-
-    .contact-item p {
-        font-size: 13px;
-    }
-
-    .hint {
-        font-size: 12px;
-    }
-}
-
-/* ≤ 480px（极小屏 / 窄横屏） */
-@media (max-width: 480px) {
-    .left {
-        padding: 28px 20px;
-    }
-
-    .hero-title h1 {
-        font-size: 22px;
+        font-size: 26px; /* 更小 */
     }
 
     .hero-desc {
@@ -327,7 +296,38 @@ footer {
         font-size: 20px;
     }
 
-    footer {
+    .projects li {
+        font-size: 13px;
+    }
+
+    .contact-item p {
         font-size: 12px;
+    }
+
+    .hint {
+        font-size: 11px;
+    }
+}
+
+/* ≤ 480px（极小屏 / 窄横屏） */
+@media (max-width: 480px) {
+    .left {
+        padding: 28px 20px;
+    }
+
+    .hero-title h1 {
+        font-size: 20px; /* 最小 */
+    }
+
+    .hero-desc {
+        font-size: 13px;
+    }
+
+    .section h2 {
+        font-size: 18px;
+    }
+
+    footer {
+        font-size: 11px;
     }
 }
