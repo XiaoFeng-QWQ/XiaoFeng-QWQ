@@ -8,6 +8,11 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: "font";
+    src: url("SourceHanSansSC-Regular-2.woff2") format("woff2");
+}
+
 html,
 body {
     width: 100%;
@@ -15,7 +20,8 @@ body {
     overflow: hidden;
     background: #0e0e11;
     color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "font", sans-serif;
+    touch-action: pan-y;
 }
 
 a {
