@@ -112,7 +112,7 @@ const pages = [
                 <div class="contact-item"><i class="fab fa-qq"></i><p>1432777209</p></div>
             </div>
         </div>
-        <footer>©2026 小枫_QWQ / https://blog.xiaofengqwq.com</footer>
+        <footer>©2026 小枫_QWQ | https://blog.xiaofengqwq.com</footer>
     `
 ];
 
@@ -189,7 +189,7 @@ function backToProjects() {
     render();
 }
 
-/* =======================
+/* ========================
    事件（统一委托）
 ======================= */
 dom.left.addEventListener("click", e => {
@@ -205,6 +205,26 @@ dom.left.addEventListener("click", e => {
     }
 });
 
+// 触摸事件
+let touchStartY = 0;
+let touchEndY = 0;
+
+window.addEventListener("touchstart", e => {
+    touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+window.addEventListener("touchend", e => {
+    if (!state.portrait.shown) {
+        touchEndY = e.changedTouches[0].clientY;
+        const diff = touchEndY - touchStartY;
+        // 向下滑动是下一页，向上滑动是上一页
+        if (Math.abs(diff) > 30) { // 避免误触
+            go(diff > 0 ? state.pageIndex - 1 : state.pageIndex + 1);
+        }
+    }
+}, { passive: true });
+
+// 保留鼠标滚轮支持
 window.addEventListener("wheel", e => {
     if (!state.portrait.shown) {
         go(e.deltaY > 0 ? state.pageIndex + 1 : state.pageIndex - 1);
