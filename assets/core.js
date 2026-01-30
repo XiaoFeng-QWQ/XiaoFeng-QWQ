@@ -112,7 +112,7 @@ const pages = [
             <h2>项目</h2>
             <ul class="projects">
                 ${Object.entries(projects).map(([id, p]) =>
-        `<li data-id="${id}"><a class="project-link" href="#" aria-label="${p.title}">${p.title}</a></li>`
+        `<li data-id="${id}">${p.title}</li>`
     ).join("")}
             </ul>
         </div>`,
