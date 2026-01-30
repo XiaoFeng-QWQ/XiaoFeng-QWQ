@@ -220,6 +220,7 @@ footer {
 
 .hint {
     position: fixed;
+    display: flex;
     bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
