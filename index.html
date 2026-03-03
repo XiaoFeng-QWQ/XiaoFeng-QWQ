@@ -100,10 +100,6 @@
                     <mdui-chip variant="filled">sqlite</mdui-chip>
                 </div>
             </div>
-            <div class="bento-item item-about animate-pop">
-                <span class="stat-number">3+</span>
-                <span class="about-label">Years of Coding</span>
-            </div>
             <div class="bento-item item-contact animate-pop">
                 <mdui-button variant="filled" full-width icon="mail_outline">Contact Me</mdui-button>
                 <div class="social-links">
@@ -147,6 +143,27 @@
                         </mdui-list-item>
                     </mdui-list>
                 </div>
+            </div>
+            <div class="bento-item item-weather animate-pop" id="weather-widget">
+                <div class="flex-between-center">
+                    <span class="section-title">Weather</span>
+                    <span class="weather-updated" id="weather-updated">--</span>
+                </div>
+                <div class="weather-main">
+                    <img id="weather-icon" class="weather-icon" alt="天气图标" hidden>
+                    <div class="weather-main-text">
+                        <div class="weather-city" id="weather-city">定位中...</div>
+                        <div class="weather-temp" id="weather-temp">--°C</div>
+                        <div class="weather-text" id="weather-text">--</div>
+                    </div>
+                </div>
+                <div class="weather-extra">
+                    <span id="weather-range">高/低温 -- / --</span>
+                    <span id="weather-humidity">湿度 --</span>
+                    <span id="weather-wind">风向/风力 --</span>
+                </div>
+                <p class="weather-status" id="weather-status">正在根据 IP 获取天气...</p>
+                <p class="weather-warning" id="weather-warning" hidden></p>
             </div>
         </section>
 

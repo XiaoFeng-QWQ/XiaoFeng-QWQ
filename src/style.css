@@ -113,7 +113,7 @@ body::before {
     grid-row: span 2;
 }
 
-.item-skills {
+.item-weather {
     grid-column: span 2;
 }
 
@@ -217,6 +217,11 @@ body::before {
     border: 1px solid rgba(var(--mdui-color-outline), 0.2);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     z-index: 100;
+    transition: transform 0.32s ease, opacity 0.24s ease, visibility 0.24s ease;
+}
+
+.floating-dock.is-entering {
+    transition: none;
 }
 
 .floating-dock[data-position="bottom"] {
@@ -249,6 +254,28 @@ body::before {
     padding: 24px 12px;
 }
 
+.floating-dock.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.floating-dock[data-position="bottom"].is-hidden {
+    transform: translate(-50%, calc(100% + 24px));
+}
+
+.floating-dock[data-position="top"].is-hidden {
+    transform: translate(-50%, calc(-100% - 24px));
+}
+
+.floating-dock[data-position="left"].is-hidden {
+    transform: translate(calc(-100% - 24px), -50%);
+}
+
+.floating-dock[data-position="right"].is-hidden {
+    transform: translate(calc(100% + 24px), -50%);
+}
+
 @media (max-width: 900px) {
     .bento-grid {
         grid-template-columns: 1fr;
@@ -259,6 +286,7 @@ body::before {
     .item-hero,
     .item-projects,
     .item-skills,
+    .item-weather,
     .item-about-text,
     .item-blog-list,
     .item-lab-card,
@@ -451,6 +479,71 @@ body::before {
     justify-content: center;
     align-items: center;
     gap: 16px;
+}
+
+.item-weather {
+    gap: 14px;
+}
+
+.weather-main {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.weather-main-text {
+    min-width: 0;
+}
+
+.weather-icon {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: rgba(var(--mdui-color-primary-container), 0.4);
+    padding: 6px;
+}
+
+.weather-city {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.weather-temp {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 2px;
+}
+
+.weather-text {
+    opacity: 0.72;
+    font-size: 0.92rem;
+}
+
+.weather-updated {
+    opacity: 0.62;
+    font-size: 0.78rem;
+}
+
+.weather-extra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.84rem;
+    opacity: 0.72;
+}
+
+.weather-status {
+    margin: 0;
+    font-size: 0.84rem;
+    opacity: 0.68;
+}
+
+.weather-warning {
+    margin: 0;
+    font-size: 0.84rem;
+    color: rgb(var(--mdui-color-error));
 }
 
 .social-links {

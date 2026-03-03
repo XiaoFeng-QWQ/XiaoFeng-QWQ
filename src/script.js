@@ -267,6 +267,174 @@ class LabLoader {
 }
 
 /**
+ * 天气小组件
+ */
+class WeatherWidget {
+    constructor() {
+        this.ipApiUrl = 'https://api.pearktrue.cn/api/ip/high';
+        this.weatherApiUrl = 'https://api.lolimi.cn/API/weather/api';
+        this.root = document.getElementById('weather-widget');
+
+        if (!this.root) return;
+
+        this.cityEl = document.getElementById('weather-city');
+        this.tempEl = document.getElementById('weather-temp');
+        this.textEl = document.getElementById('weather-text');
+        this.rangeEl = document.getElementById('weather-range');
+        this.humidityEl = document.getElementById('weather-humidity');
+        this.windEl = document.getElementById('weather-wind');
+        this.updatedEl = document.getElementById('weather-updated');
+        this.statusEl = document.getElementById('weather-status');
+        this.warningEl = document.getElementById('weather-warning');
+        this.iconEl = document.getElementById('weather-icon');
+
+        this.init();
+    }
+
+    async init() {
+        try {
+            this.setStatus('正在根据 IP 获取天气...');
+            const ipData = await this.fetchIpData();
+            const city = ipData?.data?.city;
+
+            if (!city) {
+                throw new Error('未获取到城市信息');
+            }
+
+            const weatherData = await this.fetchWeatherByCity(city);
+            this.renderWeather(ipData, weatherData);
+            this.setStatus(`${ipData?.data?.detail || city}`);
+        } catch (error) {
+            console.error('天气组件加载失败:', error);
+            this.setStatus('天气加载失败，请稍后重试');
+            this.renderFallback();
+        }
+    }
+
+    async fetchIpData() {
+        const response = await fetch(this.ipApiUrl, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`IP API 请求失败: ${response.status}`);
+        }
+
+        const data = await response.json();
+        if (!data || data.code !== 200 || !data.data) {
+            throw new Error('IP API 数据格式错误');
+        }
+
+        return data;
+    }
+
+    async fetchWeatherByCity(rawCity) {
+        const cityCandidates = this.getCityCandidates(rawCity);
+        let lastError = null;
+
+        for (const city of cityCandidates) {
+            try {
+                const requestUrl = `${this.weatherApiUrl}?city=${encodeURIComponent(city)}`;
+                const response = await fetch(requestUrl, {
+                    method: 'GET',
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`天气 API 请求失败: ${response.status}`);
+                }
+
+                const result = await response.json();
+                if (result && result.code === 1 && result.data) {
+                    return result.data;
+                }
+
+                throw new Error(result?.text || '天气 API 数据格式错误');
+            } catch (error) {
+                lastError = error;
+            }
+        }
+
+        throw lastError || new Error('天气 API 请求失败');
+    }
+
+    getCityCandidates(city) {
+        const trimmed = String(city || '').trim();
+        const noSuffix = trimmed.replace(/市$/, '');
+        return [...new Set([trimmed, noSuffix].filter(Boolean))];
+    }
+
+    renderWeather(ipData, weatherData) {
+        const current = weatherData?.current || {};
+        const cityText = weatherData?.city || current?.city || ipData?.data?.city || '--';
+        const weatherText = current?.weather || weatherData?.weather || '--';
+        const tempText = current?.temp ? `${current.temp}°C` : '--°C';
+        const highText = weatherData?.temp || '--';
+        const lowText = weatherData?.tempn || '--';
+        const humidityText = current?.humidity || '--';
+        const windText = `${current?.wind || weatherData?.wind || '--'} ${current?.windSpeed || weatherData?.windSpeed || ''}`.trim();
+        const updateTime = current?.time || weatherData?.time || '--';
+        const warningText = weatherData?.warning?.warning || '';
+        const iconUrl = current?.image || '';
+
+        if (this.cityEl) this.cityEl.textContent = cityText;
+        if (this.tempEl) this.tempEl.textContent = tempText;
+        if (this.textEl) this.textEl.textContent = weatherText;
+        if (this.rangeEl) this.rangeEl.textContent = `高/低温 ${highText}°C / ${lowText}°C`;
+        if (this.humidityEl) this.humidityEl.textContent = `湿度 ${humidityText}`;
+        if (this.windEl) this.windEl.textContent = `风向/风力 ${windText}`;
+        if (this.updatedEl) this.updatedEl.textContent = `更新 ${updateTime}`;
+
+        if (this.iconEl) {
+            if (iconUrl) {
+                this.iconEl.src = iconUrl;
+                this.iconEl.hidden = false;
+            } else {
+                this.iconEl.hidden = true;
+            }
+        }
+
+        if (this.warningEl) {
+            if (warningText) {
+                this.warningEl.textContent = `天气预警：${warningText}`;
+                this.warningEl.hidden = false;
+            } else {
+                this.warningEl.hidden = true;
+                this.warningEl.textContent = '';
+            }
+        }
+    }
+
+    renderFallback() {
+        if (this.cityEl) this.cityEl.textContent = '天气不可用';
+        if (this.tempEl) this.tempEl.textContent = '--°C';
+        if (this.textEl) this.textEl.textContent = '请检查网络后重试';
+        if (this.rangeEl) this.rangeEl.textContent = '高/低温 -- / --';
+        if (this.humidityEl) this.humidityEl.textContent = '湿度 --';
+        if (this.windEl) this.windEl.textContent = '风向/风力 --';
+        if (this.updatedEl) this.updatedEl.textContent = '--';
+        if (this.warningEl) {
+            this.warningEl.hidden = true;
+            this.warningEl.textContent = '';
+        }
+        if (this.iconEl) {
+            this.iconEl.hidden = true;
+        }
+    }
+
+    setStatus(text) {
+        if (this.statusEl) {
+            this.statusEl.textContent = text;
+        }
+    }
+}
+
+/**
  * 路由管理器
  */
 class HashRouter {
@@ -374,6 +542,7 @@ class BentoApp {
         this.themeManager = new ThemeManager();
         this.blogLoader = new BlogLoader();
         this.labLoader = new LabLoader();
+        this.weatherWidget = new WeatherWidget();
         this.router = new HashRouter(['home', 'about', 'work', 'settings'], 'home');
     }
 
@@ -382,13 +551,69 @@ class BentoApp {
     }
 
     setupEntrance() {
-        gsap.from(".floating-dock", {
-            y: 100,
-            opacity: 0,
-            duration: 1,
-            ease: "power4.out",
-            delay: 0.5
-        });
+        const dock = document.getElementById('dock');
+        if (!dock) return;
+
+        dock.classList.add('is-entering');
+
+        gsap.fromTo(
+            dock,
+            {
+                y: 100,
+                opacity: 0
+            },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.32,
+                ease: "power1.out",
+                delay: 0.5,
+                onComplete: () => {
+                    // 清掉 GSAP 注入的内联样式，恢复 CSS 原生定位 transform
+                    gsap.set(dock, { clearProps: 'opacity,transform' });
+                    dock.classList.remove('is-entering');
+                    this.setupDockAutoHide();
+                }
+            }
+        );
+    }
+
+    setupDockAutoHide() {
+        const dock = document.getElementById('dock');
+        if (!dock) return;
+
+        let lastScrollY = window.scrollY;
+        let isTicking = false;
+        const deltaThreshold = 10;
+
+        const updateDockVisibility = () => {
+            const currentScrollY = window.scrollY;
+            const delta = currentScrollY - lastScrollY;
+
+            if (currentScrollY <= 8) {
+                dock.classList.remove('is-hidden');
+                lastScrollY = currentScrollY;
+                isTicking = false;
+                return;
+            }
+
+            if (Math.abs(delta) >= deltaThreshold) {
+                if (delta > 0) {
+                    dock.classList.add('is-hidden');
+                } else {
+                    dock.classList.remove('is-hidden');
+                }
+                lastScrollY = currentScrollY;
+            }
+
+            isTicking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (isTicking) return;
+            isTicking = true;
+            window.requestAnimationFrame(updateDockVisibility);
+        }, { passive: true });
     }
 }
 
