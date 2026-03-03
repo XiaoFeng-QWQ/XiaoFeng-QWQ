@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://blog.xiaofengqwq.com/sitemap.xml
