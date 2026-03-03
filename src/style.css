@@ -96,6 +96,7 @@ body::before {
     display: flex;
     flex-direction: column;
     transition: border 0.3s ease;
+    min-width: 0;
 }
 
 .bento-item:hover {
@@ -251,6 +252,8 @@ body::before {
 @media (max-width: 900px) {
     .bento-grid {
         grid-template-columns: 1fr;
+        width: 100%;
+        padding: 24px 14px 120px;
     }
 
     .item-hero,
@@ -261,7 +264,7 @@ body::before {
     .item-lab-card,
     .item-lab-small,
     .item-full {
-        grid-column: span 3;
+        grid-column: 1 / -1;
     }
 
     .hero-name {
