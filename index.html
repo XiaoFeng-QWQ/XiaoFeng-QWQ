@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh" class="mdui-theme-auto">
 
 <head>
     <meta charset="UTF-8">
     <title>小枫_QWQ个人主页 - 前端与后端开发者的个人网站</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv='content-language' content='zh-CN'>
+    <meta http-equiv="content-language" content="zh-CN">
     <meta name="description" content="小枫_QWQ的个人主页，展示了小枫_QWQ作为一个业余网页开发者的个人项目与经验，专注于前端和后端开发技术。">
     <meta name="keywords" content="小枫_QWQ, 小枫, 个人主页, 前端开发, 后端开发, Web开发, 程序员个人网站">
     <meta name="author" content="小枫_QWQ">
@@ -16,47 +16,165 @@
     <meta property="og:type" content="website">
     <meta name="twitter:title" content="小枫_QWQ的个人主页 - 业余网页开发者">
     <meta name="twitter:description" content="欢迎访问小枫_QWQ的个人主页，了解我的前端和后端开发项目，技术经验分享。">
-    <link rel="icon" href="/assets/b_c8e691e6114bf354c57bd63104e2a7c60_256x256.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/assets/style.css">
-    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/extensions.css">
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "小枫_QWQ",
-      "url": "https://xiaofengqwq.com",
-      "description": "业余网页开发者，专注于前端和后端开发技术",
-      "image": "https://xiaofengqwq.com/assets/b_c8e691e6114bf354c57bd63104e2a7c60_256x256.ico",
-      "email": "1432777209@qq.com",
-      "sameAs": [
-        "https://gitee.com/XiaoFengQWQ",
-        "https://blog.xiaofengqwq.com",
-        "https://chat.flmp.uk"
-      ],
-      "jobTitle": "Web 开发者",
-      "knowsAbout": ["前端开发", "后端开发", "JavaScript", "PHP", "Python"]
-    }
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "小枫_QWQ",
+          "url": "https://xiaofengqwq.com",
+          "description": "业余网页开发者，专注于前端和后端开发技术",
+          "image": "https://xiaofengqwq.com/src/640.webp",
+          "email": "1432777209@qq.com",
+          "sameAs": [
+            "https://gitee.com/XiaoFengQWQ",
+            "https://blog.xiaofengqwq.com",
+            "https://chat.flmp.uk"
+          ],
+          "jobTitle": "Web 开发者",
+          "knowsAbout": ["前端开发", "后端开发", "JavaScript", "PHP", "Python"]
+        }
     </script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <link rel="stylesheet" href="./src/style.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="module" src="./src/script.js"></script>
+    <link rel="shortcut icon" href="./src/640.webp" type="image/x-icon">
 </head>
 
 <body>
-    <div class="app">
-        <div class="status" id="status"></div>
-        <main class="app-content" role="main">
-            <article class="left" id="left"></article>
-            <div class="right" role="complementary">
-                <canvas id="heroCanvas"></canvas>
-                <div class="visual" id="visual"></div>
-                <div class="project-image" id="projectImage"></div>
+    <main id="app-container">
+
+        <section id="home" class="bento-grid">
+            <div class="bento-item item-hero animate-pop">
+                <h1 class="hero-name">Hello, I'm <span style="color: rgb(var(--mdui-color-primary));">小枫_QWQ</span>
+                </h1>
+                <p class="hero-subtitle">全栈工程师 / 业余web程序员</p>
             </div>
-        </main>
-        <div class="hint">滚轮 / ↑ ↓ ← → ｜ 点击项目 ｜ ESC 返回 | <a href="https://www.travellings.cn/go.html" target="_blank"
-                rel="noopener" title="开往-友链接力">
-                <img src="/assets/travellings.svg" alt="开往-友链接力" width="80px" style="margin-left: 5px;">
-            </a></div>
-    </div>
-    <script type="module" src="/assets/main.js"></script>
+            <div class="bento-item item-projects animate-pop">
+                <div class="flex-between-center">
+                    <span class="section-title">Projects</span>
+                    <mdui-button href="https://github.com/XiaoFeng-QWQ" variant="text"
+                        icon="arrow_outward">All</mdui-button>
+                </div>
+                <div class="project-list">
+                    <a href="https://gitee.com/XiaoFengQWQ/mc-websocket-player" class="project-entry">
+                        <div class="icon-box"><mdui-icon name="camera"></mdui-icon></div>
+                        <div class="project-entry-content">
+                            <div class="project-entry-title">WS播放器</div>
+                            <div class="project-entry-description">使用 WebSocket 在 MC 基岩版中播放视频。</div>
+                        </div>
+                        <mdui-icon name="chevron_right"></mdui-icon>
+                    </a>
+                    <a href="https://github.com/XiaoFeng-QWQ/XiaoFeng-QWQ" class="project-entry">
+                        <div class="icon-box"
+                            style="background: rgb(var(--mdui-color-secondary-container)); color: rgb(var(--mdui-color-on-secondary-container));">
+                            <mdui-icon name="auto_stories"></mdui-icon>
+                        </div>
+                        <div class="project-entry-content">
+                            <div class="project-entry-title">Minimal Home Page</div>
+                            <div class="project-entry-description">基于 MDUI 2 的个人主页</div>
+                        </div>
+                        <mdui-icon name="chevron_right"></mdui-icon>
+                    </a>
+                    <a href="https://gitee.com/XiaoFengQWQ/xqfchat" class="project-entry">
+                        <div class="icon-box"
+                            style="background: rgb(var(--mdui-color-tertiary-container)); color: rgb(var(--mdui-color-on-tertiary-container));">
+                            <mdui-icon name="chat"></mdui-icon>
+                        </div>
+                        <div class="project-entry-content">
+                            <div class="project-entry-title">XQFChatRoom</div>
+                            <div class="project-entry-description">
+                                这是一款前端使用mdui2构建并为企业级实时聊天解决方案，融合了简洁界面与强大功能，支持多房间通信、文件协作与机器人集成，为团队协作和社区交流提供高效平台。
+                            </div>
+                        </div>
+                        <mdui-icon name="chevron_right"></mdui-icon>
+                    </a>
+                </div>
+            </div>
+            <div class="bento-item item-skills animate-pop">
+                <span class="skills-title">Stack</span>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <mdui-chip variant="filled">JavaScript(ES6 Module)</mdui-chip>
+                    <mdui-chip variant="filled">Python</mdui-chip>
+                    <mdui-chip variant="filled">PHP</mdui-chip>
+                    <mdui-chip variant="filled">MySql</mdui-chip>
+                    <mdui-chip variant="filled">sqlite</mdui-chip>
+                </div>
+            </div>
+            <div class="bento-item item-about animate-pop">
+                <span class="stat-number">3+</span>
+                <span class="about-label">Years of Coding</span>
+            </div>
+            <div class="bento-item item-contact animate-pop">
+                <mdui-button variant="filled" full-width icon="mail_outline">Contact Me</mdui-button>
+                <div class="social-links">
+                    <mdui-button-icon href="mailto:1432777209@qq.com" icon="email" variant="tonal"></mdui-button-icon>
+                    <mdui-button-icon href="https://space.bilibili.com" icon="live_tv"
+                        variant="tonal"></mdui-button-icon>
+                    <mdui-button variant="text" href="https://www.travellings.cn/go.html" target="_blank">
+                        <img src="./src/travellings.svg" alt="开往-友链接力" width="100px">
+                    </mdui-button>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="bento-grid">
+            <div class="bento-item item-about-text animate-pop">
+                <h2 class="hero-name">About <span style="color: rgb(var(--mdui-color-secondary));">Me</span></h2>
+                <p class="about-text">
+                    一名对前端艺术执着的开发者。喜欢从零构建有温度的产品。目前专注于 Web3 与 AI 辅助设计的交叉领域。<br>
+                    除了敲代码，我也会在博客分享我的技术心得与生活随笔。
+                </p>
+                <div class="about-chips">
+                    <mdui-chip icon="location_on">HeBei, China</mdui-chip>
+                    <mdui-chip icon="language">Mandarin</mdui-chip>
+                    <mdui-chip icon="tag">强迫症</mdui-chip>
+                    <mdui-chip icon="tag">轻微二次元</mdui-chip>
+                    <mdui-chip icon="tag">电脑重度依赖</mdui-chip>
+                </div>
+            </div>
+            <div class="bento-item item-blog-list animate-pop">
+                <div class="flex-between-center mb-20">
+                    <span class="section-title">Latest Journal</span>
+                    <mdui-button variant="text" href="https://blog.xiaofengqwq.com"
+                        icon="arrow_outward">All</mdui-button>
+                </div>
+                <div class="blog-scroll">
+                    <mdui-list id="blog-posts-list">
+                        <mdui-list-item>
+                            <div style="text-align: center; width: 100%;">
+                                <mdui-circular-progress></mdui-circular-progress>
+                            </div>
+                        </mdui-list-item>
+                    </mdui-list>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="bento-grid"></section>
+
+        <section id="settings" class="bento-grid">
+            <div class="bento-item item-full animate-pop">
+                <h2 class="hero-name">App <span style="color: rgb(var(--mdui-color-error));">Settings</span></h2>
+                <div class="settings-theme-row">
+                    <span>深色模式</span>
+                    <mdui-switch id="theme-switch"></mdui-switch>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <nav class="floating-dock" id="dock" data-position="bottom">
+        <mdui-button-icon href="#home" data-route="home" icon="home" variant="filled"></mdui-button-icon>
+        <mdui-button-icon href="#about" data-route="about" icon="person_pin" variant="text"></mdui-button-icon>
+        <mdui-button-icon href="#work" data-route="work" icon="biotech" variant="text"></mdui-button-icon>
+        <mdui-button-icon href="#settings" data-route="settings" icon="settings" variant="text"></mdui-button-icon>
+    </nav>
+
 </body>
 
 </html>

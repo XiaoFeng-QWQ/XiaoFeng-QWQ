@@ -1,0 +1,397 @@
+/**
+ * 主题管理器
+ */
+class ThemeManager {
+    constructor() {
+        this.htmlEl = document.documentElement;
+        this.themeSwitch = document.getElementById('theme-switch');
+        this.storageKey = 'bento-theme-preference';
+        this.init();
+    }
+
+    init() {
+        const savedTheme = localStorage.getItem(this.storageKey);
+
+        if (savedTheme) {
+            this.applyTheme(savedTheme === 'dark');
+        } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            this.applyTheme(prefersDark, true); // true 代表保持 auto 状态
+        }
+
+        if (this.themeSwitch) {
+            this.themeSwitch.addEventListener('change', (e) => {
+                const isDark = e.target.checked;
+                this.applyTheme(isDark);
+                localStorage.setItem(this.storageKey, isDark ? 'dark' : 'light');
+            });
+        }
+    }
+
+    applyTheme(isDark, isAuto = false) {
+        if (this.themeSwitch) {
+            this.themeSwitch.checked = isDark;
+        }
+
+        this.htmlEl.classList.remove('mdui-theme-auto', 'mdui-theme-dark', 'mdui-theme-light');
+
+        if (isAuto) {
+            this.htmlEl.classList.add('mdui-theme-auto');
+        } else {
+            this.htmlEl.classList.add(isDark ? 'mdui-theme-dark' : 'mdui-theme-light');
+        }
+    }
+}
+
+/**
+ * 文章加载器
+ */
+class BlogLoader {
+    constructor() {
+        this.apiUrl = 'https://blog.xiaofengqwq.com/api/posts';
+        this.listElement = $('#blog-posts-list');
+        this.init();
+    }
+
+    init() {
+        this.loadPosts();
+    }
+
+    loadPosts() {
+        $.ajax({
+            url: this.apiUrl,
+            method: 'GET',
+            dataType: 'json',
+            success: (response) => {
+                if (response && response.status === 'success' && response.data && response.data.dataSet) {
+                    this.renderPosts(response.data.dataSet);
+                } else {
+                    this.showError('数据格式错误');
+                }
+            },
+            error: (xhr, status, error) => {
+                console.error('AJAX 错误:', status, error);
+                this.showError('加载失败，请稍后重试');
+            }
+        });
+    }
+
+    /**
+     * 格式化时间戳为可读日期
+     * @param {number} timestamp - Unix 时间戳（秒）
+     * @returns {string} 格式化的日期字符串 (YYYY-MM-DD)
+     */
+    formatDate(timestamp) {
+        const date = new Date(timestamp * 1000);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    renderPosts(posts) {
+        this.listElement.empty();
+
+        if (!posts || posts.length === 0) {
+            this.listElement.append(`
+                <mdui-list-item>
+                    <div class="text-center w-100">暂无文章</div>
+                </mdui-list-item>
+            `);
+            return;
+        }
+
+        const displayPosts = posts.slice(0, 10);
+
+        displayPosts.forEach(post => {
+            const formattedDate = this.formatDate(post.created);
+            const postUrl = post.permalink || `https://blog.xiaofengqwq.com/p/${post.cid}`;
+
+            const title = post.title.length > 30 ? post.title.substring(0, 30) + '...' : post.title;
+
+            const listItem = $(`
+                <mdui-list-item 
+                    href="${postUrl}" 
+                    target="_blank"
+                    headline="${title}" 
+                    description="${formattedDate}" 
+                    icon="article">
+                </mdui-list-item>
+            `);
+
+            this.listElement.append(listItem);
+        });
+    }
+
+    showError(message) {
+        this.listElement.empty();
+        this.listElement.append(`
+            <mdui-list-item>
+                <div class="text-center w-100 text-error">
+                    ${message}
+                </div>
+            </mdui-list-item>
+        `);
+    }
+}
+
+/**
+ * 实验室项目加载器
+ */
+class LabLoader {
+    constructor() {
+        this.apiUrl = 'https://api.xiaofengqwq.com/api/v1/my/labs';
+        this.container = $('#work');
+        this.init();
+    }
+
+    init() {
+        this.loadProjects();
+    }
+
+    loadProjects() {
+        this.showLoading();
+
+        $.ajax({
+            url: this.apiUrl,
+            method: 'GET',
+            dataType: 'json',
+            success: (response) => {
+                if (response && response.code === 200 && response.data && Array.isArray(response.data)) {
+                    this.renderProjects(response.data);
+                } else {
+                    this.showError('数据格式错误');
+                }
+            },
+            error: (xhr, status, error) => {
+                console.error('AJAX 错误:', status, error);
+                this.showError('加载失败，请稍后重试');
+            }
+        });
+    }
+
+    showLoading() {
+        const loadingHTML = `
+            <div class="bento-item item-full animate-pop">
+                <h1 class="hero-name">The <span class="text-tertiary">Lab</span></h1>
+                <mdui-list-item>
+                    <div class="text-center w-100">
+                        <mdui-circular-progress></mdui-circular-progress>
+                    </div>
+                </mdui-list-item>
+            </div>
+        `;
+        this.container.html(loadingHTML);
+    }
+
+    renderProjects(projects) {
+        if (!projects || projects.length === 0) {
+            this.container.html(`
+            <div class="bento-item item-full animate-pop">
+                <h1 class="hero-name">The <span class="text-tertiary">Lab</span></h1>
+                <p class="opacity-70 text-center p-40">暂无项目</p>
+            </div>
+        `);
+            return;
+        }
+
+        // 构建项目卡片HTML
+        let projectsHTML = `
+        <div class="bento-item item-full animate-pop">
+            <h1 class="hero-name">The <span class="text-tertiary">Lab</span></h1>
+            <p class="opacity-70">正在孵化的想法与未发布的项目 (Work in Progress)</p>
+        </div>
+    `;
+
+        // 遍历项目数组，为每个项目创建卡片
+        projects.forEach(project => {
+            const progress = project.progress || 0;
+            const isCompleted = progress >= 100;
+            const badgeText = isCompleted ? 'Completed' : 'Developing';
+            const badgeVariant = isCompleted ? 'success' : '';
+
+            // 根据进度决定卡片样式类：100%使用小卡片，否则使用大卡片
+            const cardClass = isCompleted ? 'item-lab-small' : 'item-lab-card';
+
+            if (cardClass === 'item-lab-card') {
+                projectsHTML += `
+                <div class="bento-item ${cardClass} animate-pop">
+                    <div class="lab-card-header">
+                        <h3 class="m-0">${project.name}</h3>
+                        <mdui-badge ${badgeVariant ? `variant="${badgeVariant}"` : ''}>${badgeText}</mdui-badge>
+                    </div>
+                    <p class="lab-card-description">${project.description}</p>
+                    <div class="mt-auto">
+                        <div class="lab-progress-labels">
+                            <span>Progress</span>
+                            <span>${progress}%</span>
+                        </div>
+                        <mdui-linear-progress value="${progress}"></mdui-linear-progress>
+                    </div>
+                </div>
+            `;
+            } else {
+                // 小卡片样式 - 已完成项目使用小卡片
+                projectsHTML += `
+                <div class="bento-item ${cardClass} animate-pop">
+                    <mdui-icon name="done" class="icon-large text-success"></mdui-icon>
+                    <h4 class="lab-small-title">${project.name}</h4>
+                    <p class="lab-small-description">${project.description}</p>
+                    <mdui-badge variant="dot" class="mt-12"></mdui-badge>
+                </div>
+            `;
+            }
+        });
+
+        // 添加合作卡片作为最后一个元素
+        projectsHTML += `
+        <div class="bento-item item-lab-card animate-pop coop-card">
+            <h3 class="m-0">Looking for Collaboration?</h3>
+            <p class="opacity-80">如果你对以上任何项目感兴趣，欢迎联系我参与共同开发。</p>
+        </div>
+    `;
+
+        this.container.html(projectsHTML);
+    }
+
+    showError(message) {
+        this.container.html(`
+            <div class="bento-item item-full animate-pop">
+                <h1 class="hero-name">The <span class="text-error">Lab</span></h1>
+                <p class="opacity-70 text-center p-40 text-error">
+                    ${message}
+                </p>
+            </div>
+        `);
+    }
+}
+
+/**
+ * 路由管理器
+ */
+class HashRouter {
+    constructor(routes, defaultRoute) {
+        this.routes = routes;
+        this.currentRoute = null;
+        this.defaultRoute = defaultRoute;
+        this.isAnimating = false;
+
+        this.init();
+    }
+
+    init() {
+        window.addEventListener('hashchange', () => this.handleRouteChange());
+
+        // 页面加载时初始化路由
+        if (!window.location.hash) {
+            window.location.hash = `#${this.defaultRoute}`;
+        } else {
+            this.handleRouteChange();
+        }
+    }
+
+    handleRouteChange() {
+        let hash = window.location.hash.replace('#', '');
+
+        // 如果输入的路由不存在，则回退到默认路由
+        if (!this.routes.includes(hash)) {
+            hash = this.defaultRoute;
+            window.location.hash = `#${hash}`;
+            return;
+        }
+
+        if (hash === this.currentRoute) return;
+
+        this.transitionPage(this.currentRoute, hash);
+        this.updateDockState(hash);
+        this.currentRoute = hash;
+    }
+
+    transitionPage(oldRoute, newRoute) {
+        const newPage = document.getElementById(newRoute);
+        const oldPage = oldRoute ? document.getElementById(oldRoute) : null;
+
+        this.isAnimating = true;
+
+        if (oldPage) {
+            // 离场动画
+            gsap.to(oldPage.querySelectorAll('.animate-pop'), {
+                scale: 0.9,
+                opacity: 0,
+                duration: 0.3,
+                stagger: 0.05,
+                ease: "power2.in",
+                onComplete: () => {
+                    oldPage.style.display = 'none';
+                    this.enterPage(newPage);
+                }
+            });
+        } else {
+            // 初次加载，直接入场
+            this.enterPage(newPage);
+        }
+    }
+
+    enterPage(pageElement) {
+        pageElement.style.display = 'grid';
+
+        // 还原动画初始状态然后入场
+        gsap.fromTo(pageElement.querySelectorAll('.animate-pop'),
+            { scale: 0.8, opacity: 0 },
+            {
+                scale: 1,
+                opacity: 1,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "elastic.out(1, 0.8)",
+                onComplete: () => {
+                    this.isAnimating = false;
+                }
+            }
+        );
+    }
+
+    updateDockState(activeRoute) {
+        const dockButtons = document.querySelectorAll('#dock mdui-button-icon');
+        dockButtons.forEach(btn => {
+            if (btn.getAttribute('data-route') === activeRoute) {
+                btn.setAttribute('variant', 'filled');
+            } else {
+                btn.setAttribute('variant', 'text');
+            }
+        });
+    }
+}
+
+/**
+ * 交互空间应用核心类 (App)
+ */
+class BentoApp {
+    constructor() {
+        this.setupTheme();
+        this.setupEntrance();
+
+        this.themeManager = new ThemeManager();
+        this.blogLoader = new BlogLoader();
+        this.labLoader = new LabLoader();
+        this.router = new HashRouter(['home', 'about', 'work', 'settings'], 'home');
+    }
+
+    setupTheme() {
+        mdui.setColorScheme('#0061a4');
+    }
+
+    setupEntrance() {
+        gsap.from(".floating-dock", {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            ease: "power4.out",
+            delay: 0.5
+        });
+    }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    new BentoApp();
+});

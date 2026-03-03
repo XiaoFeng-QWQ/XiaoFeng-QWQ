@@ -1,0 +1,515 @@
+/* ================= 全局变量与底色 ================= */
+* {
+    user-select: none;
+}
+
+:root {
+    --bento-gap: 20px;
+    --glass-bg: rgba(var(--mdui-color-surface-container-low), 0.7);
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(var(--mdui-color-primary), 0.2);
+    border-radius: 10px;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+    color: rgb(var(--mdui-color-on-surface));
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: -60%;
+
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+
+    background-size: 48px 48px;
+
+    transform: rotateX(58deg) translateY(0);
+    transform-origin: center;
+
+    animation: subtleFlow 18s linear infinite;
+
+    pointer-events: none;
+    will-change: transform;
+}
+
+.depth-layer {
+    position: fixed;
+    inset: -10%;
+    z-index: 0;
+    background:
+        linear-gradient(120deg,
+            rgba(var(--mdui-color-primary), 0.08),
+            transparent 40%),
+        linear-gradient(-120deg,
+            rgba(var(--mdui-color-secondary), 0.06),
+            transparent 50%);
+    transform: rotate(-3deg) scale(1.1);
+    filter: blur(60px);
+}
+
+/* ================= 页面容器与路由切换 ================= */
+#app-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* ================= Bento 网格布局 ================= */
+.bento-grid {
+    /* 默认隐藏，由路由系统控制显示 */
+    display: none;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: var(--bento-gap);
+    width: 90%;
+    max-width: 1200px;
+    padding: 40px 20px 120px;
+    z-index: 1;
+}
+
+/* 基础块样式 */
+.bento-item {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(var(--mdui-color-outline), 0.1);
+    border-radius: 32px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    transition: border 0.3s ease;
+}
+
+.bento-item:hover {
+    border-color: rgb(var(--mdui-color-primary));
+}
+
+/* 布局控制 */
+.item-hero {
+    grid-column: span 2;
+}
+
+.item-projects {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.item-skills {
+    grid-column: span 2;
+}
+
+.item-about-text {
+    grid-column: span 2;
+}
+
+.item-blog-list {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.item-lab-card {
+    grid-column: span 2;
+}
+
+.item-lab-small {
+    grid-column: span 1;
+}
+
+.item-full {
+    grid-column: span 4;
+}
+
+.hero-name {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -2px;
+}
+
+/* 宽屏占位块（用于其他页面演示） */
+.item-full {
+    grid-column: span 4;
+}
+
+.item-half {
+    grid-column: span 2;
+}
+
+/* ================= 内容微调 ================= */
+.hero-name {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -2px;
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.project-entry {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 20px;
+    background: rgba(var(--mdui-color-surface-container), 0.5);
+    text-decoration: none;
+    color: inherit;
+}
+
+.icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgb(var(--mdui-color-primary-container));
+    color: rgb(var(--mdui-color-on-primary-container));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: rgb(var(--mdui-color-primary));
+}
+
+/* 博客列表微调 */
+.blog-scroll {
+    max-height: 500px;
+    min-block-size: 100px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* ================= 底部 Dock ================= */
+.floating-dock {
+    position: fixed;
+    background: rgba(var(--mdui-color-surface-container-high), 0.8);
+    backdrop-filter: blur(20px);
+    padding: 12px 24px;
+    border-radius: 40px;
+    display: flex;
+    gap: 16px;
+    border: 1px solid rgba(var(--mdui-color-outline), 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+.floating-dock[data-position="bottom"] {
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+}
+
+.floating-dock[data-position="top"] {
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+}
+
+.floating-dock[data-position="left"] {
+    left: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    padding: 24px 12px;
+}
+
+.floating-dock[data-position="right"] {
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    padding: 24px 12px;
+}
+
+@media (max-width: 900px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .item-hero,
+    .item-projects,
+    .item-skills,
+    .item-about-text,
+    .item-blog-list,
+    .item-lab-card,
+    .item-lab-small,
+    .item-full {
+        grid-column: span 3;
+    }
+
+    .hero-name {
+        font-size: 2.5rem;
+    }
+}
+
+@keyframes subtleFlow {
+    from {
+        transform: rotateX(58deg) translateY(0);
+    }
+
+    to {
+        transform: rotateX(58deg) translateY(48px);
+    }
+}
+
+/* ================= 工具类 ================= */
+.text-center {
+    text-align: center;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-between-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.gap-8 {
+    gap: 8px;
+}
+
+.gap-12 {
+    gap: 12px;
+}
+
+.gap-16 {
+    gap: 16px;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.mb-8 {
+    margin-bottom: 8px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mt-24 {
+    margin-top: 24px;
+}
+
+.mt-12 {
+    margin-top: 12px;
+}
+
+.m-0 {
+    margin: 0;
+}
+
+.p-40 {
+    padding: 40px;
+}
+
+.opacity-60 {
+    opacity: 0.6;
+}
+
+.opacity-70 {
+    opacity: 0.7;
+}
+
+.opacity-80 {
+    opacity: 0.8;
+}
+
+.fs-09rem {
+    font-size: 0.9rem;
+}
+
+.fs-08rem {
+    font-size: 0.8rem;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.letter-spacing-2 {
+    letter-spacing: 2px;
+}
+
+.text-error {
+    color: rgb(var(--mdui-color-error));
+}
+
+.text-success {
+    color: rgb(var(--mdui-color-success));
+}
+
+.text-primary {
+    color: rgb(var(--mdui-color-primary));
+}
+
+.text-secondary {
+    color: rgb(var(--mdui-color-secondary));
+}
+
+.text-tertiary {
+    color: rgb(var(--mdui-color-tertiary));
+}
+
+/* ================= 组件特定类 ================= */
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.7;
+    margin: 12px 0 0;
+}
+
+.section-title {
+    font-weight: 600;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.project-entry-content {
+    flex: 1;
+}
+
+.project-entry-title {
+    font-weight: 600;
+}
+
+.project-entry-description {
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+.skills-title {
+    font-weight: 600;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.about-label {
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+.item-contact {
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.about-text {
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+.about-chips {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+.settings-theme-row {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* 实验室卡片样式 */
+.lab-card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lab-card-description {
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+.lab-progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+}
+
+.lab-small-description {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin: 0;
+}
+
+.lab-small-title {
+    margin: 12px 0 4px;
+}
+
+.lab-coop-description {
+    opacity: 0.8;
+}
+
+.icon-large {
+    font-size: 2rem;
+}
+
+.coop-card {
+    background: rgba(var(--mdui-color-tertiary-container), 0.2);
+}

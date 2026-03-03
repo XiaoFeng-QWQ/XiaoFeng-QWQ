@@ -1,4 +1,4 @@
-# Welcome to my [GitHub Profile!](https://github.com/XiaoFeng-QWQ/) & [My Home Page](https://qwq.now.cc/) 👋
+# Welcome to my [GitHub Profile!](https://github.com/XiaoFeng-QWQ/) & [My Home Page](https://xiaofengqwq.com) 👋
 
 ## About Me
 I'm XiaoFeng_QWQ and I'm passionate about WEB development and exploring new technologies.
